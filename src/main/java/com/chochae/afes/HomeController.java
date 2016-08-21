@@ -6,10 +6,15 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.chochae.afes.test.dao.CustomerDAO;
+import com.chochae.afes.test.model.Customer;
 
 /**
  * Handles requests for the application home page. TEST
@@ -31,7 +36,17 @@ public class HomeController {
 		
 		String formattedDate = dateFormat.format(date);
 		
+    	ApplicationContext context =
+        		new ClassPathXmlApplicationContext("Spring-Module.xml");
+
+            CustomerDAO customerDAO = (CustomerDAO) context.getBean("customerDAO");
+            Customer customer = new Customer(2, "rone",45);
+            customerDAO.insert(customer);
+
+            Customer customer1 = customerDAO.findByCustomerId(1);
+
 		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("customer", customer1.toString() );
 		
 		return "home";
 	}
