@@ -40,8 +40,8 @@ public class HomeController {
         		new ClassPathXmlApplicationContext("Spring-Module.xml");
 
             CustomerDAO customerDAO = (CustomerDAO) context.getBean("customerDAO");
-            Customer customer = new Customer(2, "rone",45);
-            customerDAO.insert(customer);
+          //  Customer customer = new Customer(3, "xx",45);
+          //  customerDAO.insert(customer);
 
             Customer customer1 = customerDAO.findByCustomerId(1);
 

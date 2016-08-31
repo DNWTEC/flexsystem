@@ -7,4 +7,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<bean id="userDAO" class="com.chochae.afes.user.dao.impl.UserDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 </beans>
